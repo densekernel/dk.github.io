@@ -12,39 +12,33 @@ Static portfolio website for **Jonathan Manfield / Dense Kernel**.
 
 ## Core Principles
 
-### Minimalism
-- Less is more. Avoid unnecessary complexity.
-- Prefer native HTML/CSS over frameworks.
-- No build step required unless absolutely necessary.
-
 ### Simplicity
-- Code should be readable without deep context.
-- Flat file structure when possible.
-- Semantic HTML over div soup.
+- Keep code readable and straightforward
+- Prefer flat file structures where practical
+- Semantic HTML is encouraged
 
-### Easy to Manage
-- Single-file changes preferred over multi-file edits.
-- Inline styles acceptable for one-off elements.
-- No dependencies unless they provide significant value.
+### Maintainability
+- Lean towards single-file changes when reasonable
+- Inline styles are fine for one-off elements
+- Add dependencies only when they add clear value
 
 ## Tech Stack
 
 - **HTML** - Semantic, accessible markup
-- **CSS** - Vanilla CSS, no preprocessors needed
-- **JavaScript** - Vanilla JS only if needed, keep it minimal
+- **CSS** - Vanilla CSS preferred
+- **JavaScript** - Vanilla JS when needed
 
 ## Workflow
 
-1. All changes go directly to `main`
+1. Changes go directly to `main`
 2. GitHub Pages auto-deploys on push
-3. No staging branch, no PRs required for solo work
 
-## File Structure (Target)
+## File Structure
 
 ```
 /
 ├── index.html      # Main landing page
-├── style.css       # Global styles (optional, can be inline)
+├── style.css       # Global styles (optional)
 ├── assets/         # Images, fonts if needed
 ├── README.md       # Repo description
 └── agents.md       # This file
@@ -52,15 +46,13 @@ Static portfolio website for **Jonathan Manfield / Dense Kernel**.
 
 ## Style Guidelines
 
-- Dark/light theme optional, but keep it simple
-- Typography: system fonts preferred for performance
-- Mobile-first responsive design
-- Fast load times over visual complexity
+- Dark theme with clean typography
+- System fonts for performance
+- Responsive design
+- Prioritise fast load times
 
-## What to Avoid
+## Preferences
 
-- Heavy frameworks (React, Vue, etc.)
-- CSS frameworks (Bootstrap, Tailwind)
-- Build tools (webpack, vite) unless justified
-- Over-engineering for a simple portfolio
-- Excessive comments - code should be self-documenting
+- Vanilla HTML/CSS/JS over frameworks when practical
+- Avoid heavy build tooling unless justified
+- Keep it simple, but don't sacrifice user experience

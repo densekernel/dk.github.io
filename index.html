@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>densekernel</title>
     <style>
+        :root {
+            --bg: #0a0a0a;
+            --fg: #fafafa;
+            --fg-muted: #888;
+            --fg-subtle: #666;
+            --border: #222;
+        }
+
+        [data-theme="light"] {
+            --bg: #fafafa;
+            --fg: #0a0a0a;
+            --fg-muted: #666;
+            --fg-subtle: #888;
+            --border: #ddd;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,54 +28,207 @@
         }
 
         body {
-            font-family: system-ui, -apple-system, sans-serif;
+            font-family: Helvetica, Arial, sans-serif;
             min-height: 100vh;
-            background: #0a0a0a;
-            color: #fafafa;
+            background: var(--bg);
+            color: var(--fg);
+            transition: background 0.3s, color 0.3s;
         }
 
         canvas {
             display: block;
             width: 100%;
             height: 50vh;
+            margin-bottom: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.12em;
+            color: var(--fg);
+            text-decoration: none;
+        }
+
+        .logo:hover {
+            opacity: 0.7;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            color: var(--fg-muted);
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+
+        .theme-toggle:hover {
+            color: var(--fg);
         }
 
         main {
-            text-align: center;
+            padding: 5rem 0 4rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        section:last-child {
+            margin-bottom: 0;
+        }
+
+        .about {
             max-width: 480px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
         }
 
-        h1 {
-            font-weight: 300;
-            font-size: 2rem;
-            letter-spacing: 0.1em;
+        .intro {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--fg-subtle);
         }
 
-        p {
-            margin-top: 1.5rem;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #888;
+        h2 {
+            font-weight: 400;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--fg-muted);
+            margin-bottom: 1.25rem;
+        }
+
+        .projects {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid var(--border);
+        }
+
+        .project {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--border);
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.2s;
+        }
+
+        .project:hover {
+            opacity: 0.7;
+        }
+
+        .project-name {
+            font-weight: 400;
+            font-size: 1rem;
+        }
+
+        .project-arrow {
+            color: var(--fg-muted);
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+        }
+
+        .project:hover .project-arrow {
+            transform: translateX(3px);
+        }
+
+        .social {
+            margin-top: 3rem;
+        }
+
+        .social-link {
+            display: inline-block;
+            color: var(--fg-muted);
+            transition: color 0.2s;
+        }
+
+        .social-link:hover {
+            color: var(--fg);
+        }
+
+        .social-link svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
         }
     </style>
 </head>
 <body>
+    <nav>
+        <div class="container nav-inner">
+            <a href="/" class="logo">densekernel</a>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☾</button>
+        </div>
+    </nav>
     <canvas id="kde"></canvas>
-    <main>
-        <h1>densekernel</h1>
-        <p>A concentration of core knowledge. From kernel density estimation in statistics, to the kernel at the heart of an operating system, to the dense kernel of a seed. The essential part, tightly packed.</p>
+    <main class="container">
+        <section>
+            <h2>Projects</h2>
+            <div class="projects">
+                <a href="https://www.checkstep.com/" target="_blank" rel="noopener" class="project">
+                    <span class="project-name">Checkstep</span>
+                    <span class="project-arrow">→</span>
+                </a>
+                <a href="https://abcdle.com/" target="_blank" rel="noopener" class="project">
+                    <span class="project-name">Abcdle</span>
+                    <span class="project-arrow">→</span>
+                </a>
+                <a href="http://isostarbase.com/" target="_blank" rel="noopener" class="project">
+                    <span class="project-name">Iso Starbase</span>
+                    <span class="project-arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="about">
+            <h2>About</h2>
+            <p class="intro">Co-founder of Checkstep, building trust and safety infrastructure. Previously at JP Morgan on Chase UK Card Payments and Morgan Stanley on Realtime Risk systems.</p>
+        </section>
+
+        <section class="about">
+            <h2>What is Dense Kernel</h2>
+            <p class="intro">A concentration of core knowledge. From kernel density estimation in statistics, to the kernel at the heart of an operating system, to the dense kernel of a seed. The essential part, tightly packed.</p>
+        </section>
+
+        <div class="social">
+            <a href="https://x.com/densekernel" target="_blank" rel="noopener" class="social-link" aria-label="X">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+        </div>
     </main>
     <script>
         const canvas = document.getElementById('kde');
         const ctx = canvas.getContext('2d');
 
-        let width, height;
+        let width, height, grid, maxD, gridCols, gridRows;
         const peaks = [];
-        const contourLevels = 18;
-        const resolution = 2;
-        let time = 0;
+        const contourLevels = 10;
+        const resolution = 5;
 
         function resize() {
             const dpr = window.devicePixelRatio || 1;
@@ -70,73 +239,64 @@
             ctx.scale(dpr, dpr);
         }
 
-        function gaussian(x, y, cx, cy, sigma, amplitude) {
-            const dx = x - cx;
-            const dy = y - cy;
-            return amplitude * Math.exp(-(dx * dx + dy * dy) / (2 * sigma * sigma));
-        }
-
         function initPeaks() {
             peaks.length = 0;
-            const spacing = 35;
-            const jitter = 12;
-            const cols = Math.ceil(width / spacing) + 2;
-            const rows = Math.ceil(height / spacing) + 2;
+            const numPeaks = Math.ceil((width * height) / 8000);
 
-            for (let row = -1; row <= rows; row++) {
-                for (let col = -1; col <= cols; col++) {
-                    peaks.push({
-                        x: col * spacing + (Math.random() - 0.5) * jitter * 2,
-                        y: row * spacing + (Math.random() - 0.5) * jitter * 2,
-                        sigma: 15 + Math.random() * 20,
-                        amplitude: 0.6 + Math.random() * 0.4,
-                        phase: Math.random() * Math.PI * 2,
-                        speed: 0.08 + Math.random() * 0.14
-                    });
-                }
+            for (let i = 0; i < numPeaks; i++) {
+                const sigma = 30 + Math.random() * 50;
+                peaks.push({
+                    x: Math.random() * (width + 150) - 75,
+                    y: Math.random() * (height + 150) - 75,
+                    sigma,
+                    radius: sigma * 3.5,
+                    amplitude: 0.4 + Math.random() * 0.6
+                });
             }
         }
 
-        function getDensity(x, y) {
-            let d = 0;
-            for (const p of peaks) {
-                const pulse = 0.8 + 0.2 * Math.sin(time * p.speed + p.phase);
-                d += gaussian(x, y, p.x, p.y, p.sigma, p.amplitude * pulse);
-            }
-            return d;
-        }
+        function buildGrid() {
+            gridCols = Math.ceil(width / resolution);
+            gridRows = Math.ceil(height / resolution);
+            grid = [];
+            maxD = 0;
 
-        function draw() {
-            ctx.fillStyle = '#0a0a0a';
-            ctx.fillRect(0, 0, width, height);
-
-            const cols = Math.ceil(width / resolution);
-            const rows = Math.ceil(height / resolution);
-
-            // Build density grid
-            const grid = [];
-            let maxD = 0;
-            for (let j = 0; j <= rows; j++) {
+            for (let j = 0; j <= gridRows; j++) {
                 const row = [];
-                for (let i = 0; i <= cols; i++) {
-                    const d = getDensity(i * resolution, j * resolution);
+                for (let i = 0; i <= gridCols; i++) {
+                    let d = 0;
+                    const x = i * resolution;
+                    const y = j * resolution;
+                    for (const p of peaks) {
+                        const dx = x - p.x;
+                        const dy = y - p.y;
+                        if (dx * dx + dy * dy > p.radius * p.radius) continue;
+                        d += p.amplitude * Math.exp(-(dx * dx + dy * dy) / (2 * p.sigma * p.sigma));
+                    }
                     if (d > maxD) maxD = d;
                     row.push(d);
                 }
                 grid.push(row);
             }
+        }
+
+        function draw(time) {
+            const pulse = 0.9 + 0.1 * Math.sin(time * 0.0004);
+
+            ctx.fillStyle = '#0a0a0a';
+            ctx.fillRect(0, 0, width, height);
 
             // Draw contour lines using marching squares
             for (let level = 1; level <= contourLevels; level++) {
-                const threshold = (level / (contourLevels + 1)) * maxD;
-                const alpha = 0.1 + (level / contourLevels) * 0.5;
-                ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
-                ctx.lineWidth = level === contourLevels ? 1.5 : 1;
+                const threshold = (level / (contourLevels + 1)) * maxD * pulse;
+                const baseAlpha = 0.1 + (level / contourLevels) * 0.45;
+                ctx.strokeStyle = `rgba(255, 255, 255, ${baseAlpha})`;
+                ctx.lineWidth = 1;
 
                 ctx.beginPath();
 
-                for (let j = 0; j < rows; j++) {
-                    for (let i = 0; i < cols; i++) {
+                for (let j = 0; j < gridRows; j++) {
+                    for (let i = 0; i < gridCols; i++) {
                         const x = i * resolution;
                         const y = j * resolution;
 
@@ -146,6 +306,7 @@
                         const bl = grid[j + 1][i] >= threshold ? 1 : 0;
 
                         const config = tl * 8 + tr * 4 + br * 2 + bl;
+                        if (config === 0 || config === 15) continue;
 
                         const lerp = (va, vb) => {
                             if (Math.abs(vb - va) < 0.0001) return 0.5;
@@ -167,16 +328,10 @@
                             case 2: case 13: drawLine(bottom, right); break;
                             case 3: case 12: drawLine(left, right); break;
                             case 4: case 11: drawLine(top, right); break;
-                            case 5:
-                                drawLine(left, top);
-                                drawLine(bottom, right);
-                                break;
+                            case 5: drawLine(left, top); drawLine(bottom, right); break;
                             case 6: case 9: drawLine(top, bottom); break;
                             case 7: case 8: drawLine(left, top); break;
-                            case 10:
-                                drawLine(top, right);
-                                drawLine(left, bottom);
-                                break;
+                            case 10: drawLine(top, right); drawLine(left, bottom); break;
                         }
                     }
                 }
@@ -184,10 +339,10 @@
             }
 
             // Draw grid overlay
-            const gridSpacing = 40;
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
             ctx.lineWidth = 1;
             ctx.beginPath();
+            const gridSpacing = 40;
             for (let x = 0; x <= width; x += gridSpacing) {
                 ctx.moveTo(x, 0);
                 ctx.lineTo(x, height);
@@ -198,18 +353,48 @@
             }
             ctx.stroke();
 
-            time += 0.012;
             requestAnimationFrame(draw);
         }
 
         window.addEventListener('resize', () => {
             resize();
             initPeaks();
+            buildGrid();
         });
 
         resize();
         initPeaks();
-        draw();
+        buildGrid();
+        requestAnimationFrame(draw);
+
+        // Theme toggle
+        const toggle = document.getElementById('theme-toggle');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            toggle.textContent = theme === 'light' ? '☀' : '☾';
+            localStorage.setItem('theme', theme);
+        }
+
+        function getPreferredTheme() {
+            const saved = localStorage.getItem('theme');
+            if (saved) return saved;
+            return prefersDark.matches ? 'dark' : 'light';
+        }
+
+        setTheme(getPreferredTheme());
+
+        toggle.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            setTheme(current === 'light' ? 'dark' : 'light');
+        });
+
+        prefersDark.addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                setTheme(e.matches ? 'dark' : 'light');
+            }
+        });
     </script>
 </body>
 </html>
